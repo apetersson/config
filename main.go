@@ -97,7 +97,6 @@ func parseSample(file string) registry.Template {
 
 	// replace Params in .Sample
 	for key, value := range sample.Params {
-		fmt.Println(key, value)
 		sample.Sample = strings.ReplaceAll(sample.Sample, "{{ "+key+" }}", value)
 	}
 
