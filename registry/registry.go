@@ -7,10 +7,12 @@ var Registry = make([]Template, 0)
 
 // Template contains the template definition
 type Template struct {
-	Class  string
-	Type   string
-	Name   string
-	Sample string
+	Class       string
+	Type        string
+	Name        string
+	Params      map[string]string
+	Sample      string
+	PlainSample string
 }
 
 func Add(t Template) {

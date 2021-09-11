@@ -52,7 +52,13 @@ func init() {
 		Class:  "{{.Class}}",
 		Type:   "{{.Type}}",
 		Name:   "{{.Name}}",
-		Sample: {{$tick}}{{escape .Sample}}{{$tick}},
+{{- if .Params }}
+		Params:
+{{- range $key, $value := .Params }}
+			{{$key}}: {{$value}},
+{{- end }}
+{{- end }}
+		Sample: {{$tick}}{{escape .PlainSample}}{{$tick}},
 	}
 
 	registry.Add(template)
@@ -86,7 +92,14 @@ func parseSample(file string) registry.Template {
 	}
 
 	// trim trailing linebreaks
+	sample.PlainSample = strings.TrimRight(sample.Sample, "\r\n")
 	sample.Sample = strings.TrimRight(sample.Sample, "\r\n")
+
+	// replace Params in .Sample
+	for key, value := range sample.Params {
+		fmt.Println(key, value)
+		sample.Sample = strings.ReplaceAll(sample.Sample, "{{ "+key+" }}", value)
+	}
 
 	return sample
 }
