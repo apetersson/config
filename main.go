@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"io"
 	"os"
@@ -95,9 +96,17 @@ func parseSample(file string) registry.Template {
 	sample.PlainSample = strings.TrimRight(sample.Sample, "\r\n")
 	sample.Sample = strings.TrimRight(sample.Sample, "\r\n")
 
-	// replace Params in .Sample
-	for key, value := range sample.Params {
-		sample.Sample = strings.ReplaceAll(sample.Sample, "{{ "+key+" }}", value)
+	if len(sample.Params) > 0 {
+		fmt.Printf("Params: %#v\n", sample.Params)
+		sampleTmpl, err := template.New("sample").Parse(sample.Sample)
+		if err != nil {
+			panic(err)
+		}
+
+		var tpl bytes.Buffer
+		sampleTmpl.Execute(&tpl, sample.Params)
+
+		sample.Sample = tpl.String()
 	}
 
 	return sample
