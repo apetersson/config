@@ -122,6 +122,13 @@ func renderSample(sample registry.Template) registry.Template {
 	paramHints := make(map[string]string)
 
 	for _, item := range sample.Params {
+		if item.Name == "" {
+			panic("params name is required")
+		}
+		if item.Value == "" {
+			panic("params value is required")
+		}
+
 		paramValues[item.Name] = item.Value
 		if item.Hint != "" {
 			paramHints[item.Name] = item.Hint
