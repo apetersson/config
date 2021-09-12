@@ -1,7 +1,9 @@
 type: eebus
 name: EEBUS compatible wallbox (e.g. Mobile Charger Connect)
 params:
-  ski: 1234-5678-90ab-cdef-1234-5678-90ab-cdef-1234-5678 
+-  name: ski
+   value: 1234-5678-90ab-cdef-1234-5678-90ab-cdef-1234-5678 
+   hint: Enter the SKI of the wallbox which can usually be found in the wallbox web interface
 sample: |
-  ski: {{ .ski }} # Enter the SKI of the wallbox which can usually be found in the wallbox web interface
+  ski: {{ .values.ski }} # {{ .hints.ski }}
   forcePVLimits: true # use Overload Protection to limit PV charging, if false PV surplus is sent as recommended charging levels to the EV, but this is currently unreliable

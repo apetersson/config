@@ -54,10 +54,17 @@ func init() {
 		Type:   "{{.Type}}",
 		Name:   "{{.Name}}",
 {{- if .Params }}
-		Params:
-{{- range $key, $value := .Params }}
-			{{$key}}: {{$value}},
+		Params: []TemplateParam{
+{{- range .Params }}
+			{
+			  Name: {{.Name}},
+			  Value: {{.Value}},
+			{{- if .Hint }}
+			  Hint: {{.Hint}},
+			{{- end }}
+			},
 {{- end }}
+		},
 {{- end }}
 		Sample: {{$tick}}{{escape .PlainSample}}{{$tick}},
 	}
@@ -111,8 +118,25 @@ func renderSample(sample registry.Template) registry.Template {
 		panic(err)
 	}
 
+	paramValues := make(map[string]string)
+	paramHints := make(map[string]string)
+
+	for _, item := range sample.Params {
+		fmt.Printf("%#v\n", item)
+		paramValues[item.Name] = item.Value
+		if item.Hint != "" {
+			paramHints[item.Name] = item.Hint
+		}
+	}
+
+	fmt.Printf("%#v\n", paramValues)
+	fmt.Printf("%#v\n", paramHints)
+
 	var tpl bytes.Buffer
-	if err = sampleTmpl.Execute(&tpl, sample.Params); err != nil {
+	if err = sampleTmpl.Execute(&tpl, map[string]interface{}{
+		"values": paramValues,
+		"hints":  paramHints,
+	}); err != nil {
 		panic(err)
 	}
 

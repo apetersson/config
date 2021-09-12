@@ -5,12 +5,18 @@ import "strings"
 // Registry is the template registry instance
 var Registry = make([]Template, 0)
 
+type TemplateParam struct {
+	Name  string
+	Value string
+	Hint  string
+}
+
 // Template contains the template definition
 type Template struct {
 	Class       string
 	Type        string
 	Name        string
-	Params      map[string]string
+	Params      []TemplateParam
 	Sample      string
 	PlainSample string
 }
