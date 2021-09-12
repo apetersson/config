@@ -122,15 +122,11 @@ func renderSample(sample registry.Template) registry.Template {
 	paramHints := make(map[string]string)
 
 	for _, item := range sample.Params {
-		fmt.Printf("%#v\n", item)
 		paramValues[item.Name] = item.Value
 		if item.Hint != "" {
 			paramHints[item.Name] = item.Hint
 		}
 	}
-
-	fmt.Printf("%#v\n", paramValues)
-	fmt.Printf("%#v\n", paramHints)
 
 	var tpl bytes.Buffer
 	if err = sampleTmpl.Execute(&tpl, map[string]interface{}{
