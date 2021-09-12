@@ -54,13 +54,13 @@ func init() {
 		Type:   "{{.Type}}",
 		Name:   "{{.Name}}",
 {{- if .Params }}
-		Params: []TemplateParam{
+		Params: []registry.TemplateParam{
 {{- range .Params }}
 			{
-			  Name: {{.Name}},
-			  Value: {{.Value}},
+			  Name: "{{.Name}}",
+			  Value: "{{.Value}}",
 			{{- if .Hint }}
-			  Hint: {{.Hint}},
+			  Hint: "{{.Hint}}",
 			{{- end }}
 			},
 {{- end }}
