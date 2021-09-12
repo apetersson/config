@@ -9,8 +9,20 @@ func init() {
 		Class:  "meter",
 		Type:   "modbus",
 		Name:   "Eastron SDM Modbus Meter",
+		Params: []registry.TemplateParam{
+			{
+				Name: "id",
+				Value: "1",
+				Hint: "ID of the modbus device",
+			},
+			{
+				Name: "interface",
+				Type: "modbus",
+				Options: "serial,tcprtu",
+			},
+		},
 		Sample: `model: sdm # specific non-sunspec meter
-id: 1
+id: {{ .values.id }}
 energy: Sum # only required for charge meter usage
 # chose either locally attached:
 device: /dev/ttyUSB0 # serial port

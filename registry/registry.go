@@ -6,9 +6,11 @@ import "strings"
 var Registry = make([]Template, 0)
 
 type TemplateParam struct {
-	Name  string
-	Value string
-	Hint  string
+	Name    string
+	Value   string
+	Hint    string
+	Type    string
+	Options string
 }
 
 // Template contains the template definition

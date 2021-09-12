@@ -1,8 +1,15 @@
 type: modbus
 name: Eastron SDM Modbus Meter
+params:
+- name: id
+  value: 1
+  hint: ID of the modbus device
+- name: interface
+  type: modbus
+  options: serial,tcprtu
 sample: |
   model: sdm # specific non-sunspec meter
-  id: 1
+  id: {{ .values.id }}
   energy: Sum # only required for charge meter usage
   # chose either locally attached:
   device: /dev/ttyUSB0 # serial port

@@ -57,11 +57,16 @@ func init() {
 		Params: []registry.TemplateParam{
 {{- range .Params }}
 			{
-			  Name: "{{.Name}}",
-			  Value: "{{.Value}}",
+				Name: "{{.Name}}",
+{{- if not (eq .Type "") }}
+				Type: "{{.Type}}",
+				Options: "{{.Options}}",
+{{- else }}
+				Value: "{{.Value}}",
 			{{- if .Hint }}
-			  Hint: "{{.Hint}}",
+				Hint: "{{.Hint}}",
 			{{- end }}
+{{- end }}
 			},
 {{- end }}
 		},
@@ -125,11 +130,19 @@ func renderSample(sample registry.Template) registry.Template {
 		if item.Name == "" {
 			panic("params name is required")
 		}
-		if item.Value == "" {
-			panic("params value is required")
+		if item.Value == "" && item.Type == "" {
+			panic("params value or type is required")
+		}
+		if item.Type != "" && item.Options == "" {
+			panic("params options is required with type")
 		}
 
-		paramValues[item.Name] = item.Value
+		if item.Value != "" {
+			paramValues[item.Name] = item.Value
+		}
+		if item.Type != "" {
+			paramValues[item.Name] = item.Type
+		}
 		if item.Hint != "" {
 			paramHints[item.Name] = item.Hint
 		}

@@ -11,9 +11,9 @@ func init() {
 		Name:   "EEBUS compatible wallbox (e.g. Mobile Charger Connect)",
 		Params: []registry.TemplateParam{
 			{
-			  Name: "ski",
-			  Value: "1234-5678-90ab-cdef-1234-5678-90ab-cdef-1234-5678",
-			  Hint: "Enter the SKI of the wallbox which can usually be found in the wallbox web interface",
+				Name: "ski",
+				Value: "1234-5678-90ab-cdef-1234-5678-90ab-cdef-1234-5678",
+				Hint: "Enter the SKI of the wallbox which can usually be found in the wallbox web interface",
 			},
 		},
 		Sample: `ski: {{ .values.ski }} # {{ .hints.ski }}
