@@ -97,7 +97,6 @@ func parseSample(file string) registry.Template {
 	sample.Sample = strings.TrimRight(sample.Sample, "\r\n")
 
 	if len(sample.Params) > 0 {
-		fmt.Printf("Params: %#v\n", sample.Params)
 		sampleTmpl, err := template.New("sample").Parse(sample.Sample)
 		if err != nil {
 			panic(err)
