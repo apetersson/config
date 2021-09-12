@@ -112,7 +112,9 @@ func renderSample(sample registry.Template) registry.Template {
 	}
 
 	var tpl bytes.Buffer
-	sampleTmpl.Execute(&tpl, sample.Params)
+	if err = sampleTmpl.Execute(&tpl, sample.Params); err != nil {
+		panic(err)
+	}
 
 	sample.Sample = tpl.String()
 
