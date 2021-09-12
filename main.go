@@ -96,17 +96,25 @@ func parseSample(file string) registry.Template {
 	sample.PlainSample = strings.TrimRight(sample.Sample, "\r\n")
 	sample.Sample = strings.TrimRight(sample.Sample, "\r\n")
 
-	if len(sample.Params) > 0 {
-		sampleTmpl, err := template.New("sample").Parse(sample.Sample)
-		if err != nil {
-			panic(err)
-		}
+	sample = renderSample(sample)
 
-		var tpl bytes.Buffer
-		sampleTmpl.Execute(&tpl, sample.Params)
+	return sample
+}
 
-		sample.Sample = tpl.String()
+func renderSample(sample registry.Template) registry.Template {
+	if len(sample.Params) == 0 {
+		return sample
 	}
+
+	sampleTmpl, err := template.New("sample").Parse(sample.Sample)
+	if err != nil {
+		panic(err)
+	}
+
+	var tpl bytes.Buffer
+	sampleTmpl.Execute(&tpl, sample.Params)
+
+	sample.Sample = tpl.String()
 
 	return sample
 }
