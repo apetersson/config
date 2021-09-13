@@ -127,10 +127,11 @@ func renderSample(sample registry.Template) registry.Template {
 		panic(err)
 	}
 
-	paramValues := make(map[string]string)
-	paramHints := make(map[string]string)
+	paramItems := make(map[string]interface{})
 
 	for _, item := range sample.Params {
+		paramItem := make(map[string]string)
+
 		if item.Name == "" {
 			panic("params name is required")
 		}
@@ -142,21 +143,16 @@ func renderSample(sample registry.Template) registry.Template {
 		}
 
 		if item.Value != "" {
-			paramValues[item.Name] = item.Value
-		}
-		if item.Type != "" {
-			paramValues[item.Name] = item.Type
+			paramItem["value"] = item.Value
 		}
 		if item.Hint != "" {
-			paramHints[item.Name] = item.Hint
+			paramItem["hint"] = item.Hint
 		}
+		paramItems[item.Name] = paramItem
 	}
 
 	var tpl bytes.Buffer
-	if err = sampleTmpl.Execute(&tpl, map[string]interface{}{
-		"values": paramValues,
-		"hints":  paramHints,
-	}); err != nil {
+	if err = sampleTmpl.Execute(&tpl, paramItems); err != nil {
 		panic(err)
 	}
 

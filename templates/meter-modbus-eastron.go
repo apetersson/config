@@ -25,7 +25,7 @@ func init() {
 			},
 		},
 		Sample: `model: sdm # specific non-sunspec meter
-id: {{ .values.id }}
+id: {{ .id.value }}
 energy: Sum # only required for charge meter usage
 # chose either locally attached:
 device: /dev/ttyUSB0 # serial port

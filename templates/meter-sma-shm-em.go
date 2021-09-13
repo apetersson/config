@@ -16,7 +16,7 @@ func init() {
 				Hint: "IP address or hostname of the device",
 			},
 		},
-		Sample: `uri: {{ .values.ip }}`,
+		Sample: `uri: {{ .ip.value }}`,
 	}
 
 	registry.Add(template)

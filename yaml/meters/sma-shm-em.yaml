@@ -5,4 +5,4 @@ params:
    value: 192.0.2.2 
    hint: IP address or hostname of the device
 sample: |
-  uri: {{ .values.ip }}
+  uri: {{ .ip.value }}
