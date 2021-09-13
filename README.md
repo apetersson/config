@@ -1135,8 +1135,8 @@ If you want to contribute configurations to this repository please open a Pull R
 
 ```yaml
 - type: mcc
-  uri: https://192.0.2.2
-  password: # home user password
+  uri: https://192.0.2.2 # IP address or hostname of the device
+  password: password # Password of the home user
 ```
 
 <a id="charger-nrgkick-bt-bluetooth"></a>

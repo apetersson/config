@@ -1,5 +1,12 @@
 type: mcc
 name: Mobile Charger Connect (Audi, Bentley, Porsche)
+params:
+-  name: ip
+   value: 192.0.2.2 
+   hint: IP address or hostname of the device
+-  name: password
+   value: password 
+   hint: Password of the home user
 sample: |
-  uri: https://192.0.2.2
-  password: # home user password
+  uri: https://{{ .ip.value }} # {{ .ip.hint }}
+  password: {{ .password.value }} # {{ .password.hint }}
