@@ -13,7 +13,7 @@ func init() {
 			{
 				Name: "ski",
 				Value: "1234-5678-90ab-cdef-1234-5678-90ab-cdef-1234-5678",
-				Hint: "Enter the SKI of the wallbox which can usually be found in the wallbox web interface",
+				Hint: "SKI of the device (typically found in its web interface)",
 			},
 		},
 		Sample: `ski: {{ .values.ski }} # {{ .hints.ski }}

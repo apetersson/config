@@ -13,7 +13,7 @@ func init() {
 			{
 				Name: "ip",
 				Value: "192.0.2.2",
-				Hint: "IP address of the device",
+				Hint: "IP address or hostname of the device",
 			},
 		},
 		Sample: `uri: {{ .values.ip }}`,
