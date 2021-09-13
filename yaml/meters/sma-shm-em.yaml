@@ -3,6 +3,6 @@ name: SMA Sunny Home Manager 2.0 / Energy Meter (Grid, PV or Battery Meter)
 params:
 -  name: ip
    value: 192.0.2.2 
-   hint: IP address of the device
+   hint: IP address or hostname of the device
 sample: |
   uri: {{ .values.ip }}
