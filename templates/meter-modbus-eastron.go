@@ -18,7 +18,10 @@ func init() {
 			{
 				Name: "interface",
 				Type: "modbus",
-				Options: "serial,tcprtu",
+				Choice: []string{
+					"serial",
+					"tcprtu",
+				},
 			},
 		},
 		Sample: `model: sdm # specific non-sunspec meter

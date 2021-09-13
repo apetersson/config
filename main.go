@@ -60,7 +60,11 @@ func init() {
 				Name: "{{.Name}}",
 {{- if not (eq .Type "") }}
 				Type: "{{.Type}}",
-				Options: "{{.Options}}",
+				Choice: []string{
+{{- range .Choice }}
+					"{{.}}",
+{{- end }}
+				},
 {{- else }}
 				Value: "{{.Value}}",
 			{{- if .Hint }}
@@ -133,8 +137,8 @@ func renderSample(sample registry.Template) registry.Template {
 		if item.Value == "" && item.Type == "" {
 			panic("params value or type is required")
 		}
-		if item.Type != "" && item.Options == "" {
-			panic("params options is required with type")
+		if item.Type != "" && len(item.Choice) == 0 {
+			panic("params choice is required with type")
 		}
 
 		if item.Value != "" {

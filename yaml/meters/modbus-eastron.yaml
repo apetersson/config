@@ -6,7 +6,9 @@ params:
   hint: ID of the modbus device
 - name: interface
   type: modbus
-  options: serial,tcprtu
+  choice:
+  - serial
+  - tcprtu
 sample: |
   model: sdm # specific non-sunspec meter
   id: {{ .values.id }}
