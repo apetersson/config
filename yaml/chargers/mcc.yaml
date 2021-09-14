@@ -6,7 +6,7 @@ params:
    hint: IP address or hostname of the device
 -  name: password
    value: password 
-   hint: Password of the home user
+   hint: Password of the home user # The device has two default users which can not be changed and for both a different password is provided
 sample: |
   uri: https://{{ .host.value }} # {{ .host.hint }}
   password: {{ .password.value }} # {{ .password.hint }}
