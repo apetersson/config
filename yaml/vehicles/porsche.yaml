@@ -1,8 +1,24 @@
 type: porsche
 name: Porsche
+params:
+- name: user
+  value: your@email.com 
+  hint: Porsche ID (Email-Address)
+- name: Password
+  value: password 
+  hint: Password of the Porsche ID
+- name: title
+  value: Taycan
+  hint: Display name of the vehicle in the UI
+- name: capacity
+  value: 83
+  hint: The available battery capacity in kWh
+- name: vin
+  value: WP...
+  hint: The VIN number of your vehicle
 sample: |
-  title: Taycan # display name for UI
-  capacity: 83 # kWh
-  user: # user
-  password: # password
-  vin: WP...
+  title: {{ .title.value }} # {{ .title.hint }}
+  capacity: {{ .capacity.value }} # {{ .capacity.hint }}
+  user: {{ .user.value }} # {{ .user.hint }}
+  password: {{ .password.value }} # {{ .password.hint }}
+  vin: {{ .vin.value }} # {{ .vin.hint }}

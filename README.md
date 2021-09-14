@@ -1430,11 +1430,11 @@ If you want to contribute configurations to this repository please open a Pull R
 
 ```yaml
 - type: porsche
-  title: Taycan # display name for UI
-  capacity: 83 # kWh
-  user: # user
-  password: # password
-  vin: WP...
+  title: Taycan # Display name of the vehicle in the UI
+  capacity: 83 # The available battery capacity in kWh
+  user: your@email.com # Porsche ID (Email-Address)
+  password: <no value> # <no value>
+  vin: WP... # The VIN number of your vehicle
 ```
 
 <a id="vehicle-renault-zoe"></a>
