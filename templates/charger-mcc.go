@@ -11,7 +11,7 @@ func init() {
 		Name:   "Mobile Charger Connect (Audi, Bentley, Porsche)",
 		Params: []registry.TemplateParam{
 			{
-				Name: "ip",
+				Name: "host",
 				Value: "192.0.2.2",
 				Hint: "IP address or hostname of the device",
 			},
@@ -21,7 +21,7 @@ func init() {
 				Hint: "Password of the home user",
 			},
 		},
-		Sample: `uri: https://{{ .ip.value }} # {{ .ip.hint }}
+		Sample: `uri: https://{{ .host.value }} # {{ .host.hint }}
 password: {{ .password.value }} # {{ .password.hint }}`,
 	}
 
