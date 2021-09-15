@@ -9,25 +9,31 @@ func init() {
 		Class:  "meter",
 		Type:   "custom",
 		Name:   "Fronius Symo GEN24 Plus (Battery Meter)",
+		Params: []registry.TemplateParam{
+			{
+				Name: "interface",
+				Type: "modbus",
+				Choice: []string{
+					"tcp",
+				},
+			},
+		},
 		Sample: `power:
   source: calc
   add:
   - source: modbus
     model: sunspec
-    uri: 192.0.2.2:502
-    id: 1
+    # modbus-setup
     value: 160:3:DCW # mppt 3 charge
     scale: -1
   - source: modbus
     model: sunspec
-    uri: 192.0.2.2:502
-    id: 1
+    # modbus-setup
     value: 160:4:DCW # mppt 4 discharge
 soc:
   source: modbus
   model: sunspec
-  uri: 192.0.2.2:502
-  id: 1
+  # modbus-setup
   value: ChargeState`,
 	}
 

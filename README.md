@@ -197,13 +197,13 @@ If you want to contribute configurations to this repository please open a Pull R
 ```yaml
 - type: modbus
   model: sdm # specific non-sunspec meter
-  id: 1
   energy: Sum # only required for charge meter usage
-  # chose either locally attached:
+  id: 1
+  # locally attached:
   device: /dev/ttyUSB0 # serial port
   baudrate: 9600
   comset: 8N1
-  # or via TCP:
+  # serial via TCP:
   uri: 192.0.2.2:502
   rtu: true # serial modbus rtu (rs485) device connected using simple ethernet adapter
 ```
@@ -255,20 +255,23 @@ If you want to contribute configurations to this repository please open a Pull R
     add:
     - source: modbus
       model: sunspec
+      id: 1            
+      # via TCP:
       uri: 192.0.2.2:502
-      id: 1
       value: 160:3:DCW # mppt 3 charge
       scale: -1
     - source: modbus
       model: sunspec
+      id: 1            
+      # via TCP:
       uri: 192.0.2.2:502
-      id: 1
       value: 160:4:DCW # mppt 4 discharge
   soc:
     source: modbus
     model: sunspec
+    id: 1      
+    # via TCP:
     uri: 192.0.2.2:502
-    id: 1
     value: ChargeState
 ```
 
