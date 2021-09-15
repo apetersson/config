@@ -53,7 +53,7 @@ baudrate: 9600
 comset: 8N1`
 
 var modbusTCPRTU = `
-# serial via TCP:
+# RS485 via TCP:
 uri: 192.0.2.2:502
 rtu: true # serial modbus rtu (rs485) device connected using simple ethernet adapter`
 
@@ -206,17 +206,11 @@ func renderSample(sample registry.Template) registry.Template {
 		matches := r.FindAllString(sample.Sample, -1)
 		for _, match := range matches {
 			indentation := strings.Repeat(" ", strings.Index(match, "# modbus-setup"))
-			fmt.Printf("\nIndentation:\n--%s--\n", indentation)
 
 			result := renderModbus(modbusTemplate, len(indentation), choices)
-			// result = strings.TrimRight(result, "\r\n")
-			fmt.Printf("\nModbus:\n%s\n", result)
 
 			sample.Sample = strings.ReplaceAll(sample.Sample, match, result)
-			fmt.Printf("\nSample:\n%s\n", sample.Sample)
 		}
-
-		fmt.Printf("\nSample:\n%s\n", sample.Sample)
 	}
 
 	return sample

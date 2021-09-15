@@ -203,7 +203,7 @@ If you want to contribute configurations to this repository please open a Pull R
   device: /dev/ttyUSB0 # serial port
   baudrate: 9600
   comset: 8N1
-  # serial via TCP:
+  # RS485 via TCP:
   uri: 192.0.2.2:502
   rtu: true # serial modbus rtu (rs485) device connected using simple ethernet adapter
 ```
