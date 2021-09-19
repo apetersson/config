@@ -5,21 +5,20 @@ import "strings"
 // Registry is the template registry instance
 var Registry = make([]Template, 0)
 
-type ParamsChoiceType string
 
 const (
-	ParamsChoiceTypeRS485 ParamsChoiceType = "rs485"
-	ParamsChoiceTypeTCPIP ParamsChoiceType = "tcpip"
+	ParamsChoiceTypeRS485 string = "rs485"
+	ParamsChoiceTypeTCPIP string = "tcpip"
 )
 
-var ValidParamsChoiceTypes = []ParamsChoiceType{ParamsChoiceTypeRS485, ParamsChoiceTypeTCPIP}
+var ValidParamsChoiceTypes = []string{ParamsChoiceTypeRS485, ParamsChoiceTypeTCPIP}
 
 type TemplateParam struct {
 	Name   string
 	Value  string
 	Hint   string
 	Type   string
-	Choice []ParamsChoiceType
+	Choice []string
 }
 
 // Template contains the template definition
