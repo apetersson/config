@@ -6,16 +6,15 @@ params:
   hint: Porsche ID (Email-Address)
 - name: Password
   value: password 
-  hint: Password of the Porsche ID
+  hint: Password
 - name: title
   value: Taycan
-  hint: Display name of the vehicle in the UI
+  hint: display name for UI
 - name: capacity
   value: 83
-  hint: The available battery capacity in kWh
+  hint: Battery capacity (kWh)
 - name: vin
   value: WP...
-  hint: The VIN number of your vehicle
 sample: |
   title: {{ .title.value }} # {{ .title.hint }}
   capacity: {{ .capacity.value }} # {{ .capacity.hint }}
