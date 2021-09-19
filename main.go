@@ -44,24 +44,34 @@ func init() {
 	flag.Parse()
 }
 
+const (
+	magicCommentModbusSetup = "# ::modbus-setup::"
+	modbusChoiceRS485       = "rs485"
+	modbusChoiceTCPIP       = "tcpip"
+	keyModbusId             = "id"
+	keyModbusRS485Serial    = "rs485serial"
+	keyModbusRS485TCPIP     = "rs485tcpip"
+	keyModbusTCPIP          = "tcpip"
+)
+
 var modbusID = `id: 1`
 
-var modbusSerial = `
+var modbusRS485Serial = `
 # locally attached:
 device: /dev/ttyUSB0 # serial port
 baudrate: 9600
 comset: 8N1`
 
-var modbusTCPRTU = `
+var modbusRS485TCPIP = `
 # RS485 via TCP:
 uri: 192.0.2.2:502
 rtu: true # serial modbus rtu (rs485) device connected using simple ethernet adapter`
 
-var modbusTCP = `
+var modbusTCPIP = `
 # via TCP:
 uri: 192.0.2.2:502`
 
-var modbusTemplate = `{{.id | indent 0}}{{.serial | indent 0}}{{.tcprtu | indent 0}}{{.tcp | indent 0}}`
+var modbusTemplate = `{{.` + keyModbusId + ` | indent 0}}{{.` + keyModbusRS485Serial + ` | indent 0}}{{.` + keyModbusRS485TCPIP + ` | indent 0}}{{.` + keyModbusTCPIP + ` | indent 0}}`
 
 var sourceTemplate = `package templates {{/* Define backtick variable */}}{{$tick := "` + "`" + `"}}
 
@@ -186,26 +196,24 @@ func renderSample(sample registry.Template) registry.Template {
 
 	if len(modbusChoices) > 0 {
 		var choices = map[string]string{
-			"serial": "",
-			"tcprtu": "",
-			"tcp":    "",
+			keyModbusRS485Serial: "",
+			keyModbusRS485TCPIP:  "",
+			keyModbusTCPIP:       "",
 		}
-		if contains(modbusChoices, "serial") {
-			choices["serial"] = modbusSerial
+		if contains(modbusChoices, modbusChoiceRS485) {
+			choices[keyModbusRS485Serial] = modbusRS485Serial
+			choices[keyModbusRS485TCPIP] = modbusRS485TCPIP
 		}
-		if contains(modbusChoices, "tcprtu") {
-			choices["tcprtu"] = modbusTCPRTU
+		if contains(modbusChoices, modbusChoiceTCPIP) {
+			choices[keyModbusTCPIP] = modbusTCPIP
 		}
-		if contains(modbusChoices, "tcp") {
-			choices["tcp"] = modbusTCP
-		}
-		choices["id"] = modbusID
+		choices[keyModbusId] = modbusID
 
-		// search for "# ::modbus-setup::" and replace it with the correct indentation
-		r := regexp.MustCompile(`.*# ::modbus-setup::.*`)
+		// search for magicCommentModbusSetup and replace it with the correct indentation
+		r := regexp.MustCompile(`.*` + magicCommentModbusSetup + `.*`)
 		matches := r.FindAllString(sample.Sample, -1)
 		for _, match := range matches {
-			indentation := strings.Repeat(" ", strings.Index(match, "# ::modbus-setup::"))
+			indentation := strings.Repeat(" ", strings.Index(match, magicCommentModbusSetup))
 
 			result := renderModbus(modbusTemplate, len(indentation), choices)
 

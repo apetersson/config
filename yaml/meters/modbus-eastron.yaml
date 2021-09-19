@@ -4,8 +4,7 @@ params:
 - name: interface
   type: modbus
   choice:
-  - serial
-  - tcprtu
+  - rs485
 sample: |
   model: sdm # specific non-sunspec meter
   energy: Sum # only required for charge meter usage

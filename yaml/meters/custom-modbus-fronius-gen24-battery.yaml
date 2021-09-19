@@ -4,7 +4,7 @@ params:
 - name: interface
   type: modbus
   choice:
-  - tcp
+  - tcpip
 sample: |
   power:
     source: calc

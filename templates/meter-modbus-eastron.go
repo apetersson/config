@@ -14,8 +14,7 @@ func init() {
 				Name: "interface",
 				Type: "modbus",
 				Choice: []string{
-					"serial",
-					"tcprtu",
+					"rs485",
 				},
 			},
 		},

@@ -14,7 +14,7 @@ func init() {
 				Name: "interface",
 				Type: "modbus",
 				Choice: []string{
-					"tcp",
+					"tcpip",
 				},
 			},
 		},
