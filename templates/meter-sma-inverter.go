@@ -8,7 +8,11 @@ func init() {
 	template := registry.Template{
 		Class:  "meter",
 		Type:   "sma",
-		Name:   "SMA Speedwire Inverter (PV or Battery Meter)",
+		Name:   "SMA Speedwire Inverter (Battery Meter, PV Meter)",
+		Usage: []string{
+			"pv",
+			"battery",
+		},
 		Sample: `uri: 192.0.2.2
 password: # optional`,
 	}

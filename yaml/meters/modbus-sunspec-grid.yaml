@@ -1,5 +1,7 @@
 type: modbus
-name: SunSpec compliant 3-phase meter via inverter (Grid Meter)
+name: SunSpec compliant 3-phase meter via inverter
+usage:
+- grid
 sample: |
   model: sunspec
   uri: 192.0.2.2:502

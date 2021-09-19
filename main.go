@@ -84,6 +84,15 @@ func init() {
 		Class:  "{{.Class}}",
 		Type:   "{{.Type}}",
 		Name:   "{{.Name}}",
+{{- if eq .Class "meter" }}
+{{- if .Usage }}
+		Usage: []string{
+{{- range .Usage }}
+			"{{.}}",
+{{- end }}
+		},
+{{- end }}
+{{- end }}
 {{- if .Params }}
 		Params: []registry.TemplateParam{
 {{- range .Params }}
@@ -128,7 +137,7 @@ func scanFolder(root string) (files []string) {
 	return files
 }
 
-func parseSample(file string) registry.Template {
+func parseSample(file, typ string) registry.Template {
 	src, err := os.ReadFile(file)
 	if err != nil {
 		panic(err)
@@ -138,6 +147,8 @@ func parseSample(file string) registry.Template {
 	if err := yaml.Unmarshal(src, &sample); err != nil {
 		panic(err)
 	}
+
+	sample.Class = typ
 
 	// trim trailing linebreaks
 	sample.PlainSample = strings.TrimRight(sample.Sample, "\r\n")
@@ -149,13 +160,29 @@ func parseSample(file string) registry.Template {
 }
 
 func renderSample(sample registry.Template) registry.Template {
-	if len(sample.Params) == 0 {
+	if len(sample.Params) == 0 && len(sample.Usage) == 0 {
 		return sample
 	}
 
 	sampleTmpl, err := template.New("sample").Parse(sample.Sample)
 	if err != nil {
 		panic(err)
+	}
+
+	if sample.Class == "meter" {
+		usageItems := []string{}
+		for _, item := range sample.Usage {
+			if !contains(registry.ValidUsageTypes, item) {
+				panic("usage " + item + " is invalid")
+			}
+			usageItems = append(usageItems, registry.UsageTypeDescriptions[item])
+		}
+		if len(usageItems) > 0 {
+			sort.Slice(usageItems, func(i, j int) bool {
+				return usageItems[i] < usageItems[j]
+			})
+			sample.Name = sample.Name + " (" + strings.Join(usageItems, ", ") + ")"
+		}
 	}
 
 	var modbusChoices []string
@@ -332,14 +359,13 @@ func main() {
 
 	files := scanFolder(confYaml)
 	for _, file := range files {
-		sample := parseSample(file)
-
 		// example type
 		dir := filepath.Dir(file)
 		typ := filepath.Base(dir)
 		typ = strings.TrimRight(typ, "s") // de-pluralize
 
-		sample.Class = typ
+		sample := parseSample(file, typ)
+
 		samples = append(samples, sample)
 
 		if confGo {

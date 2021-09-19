@@ -5,6 +5,18 @@ import "strings"
 // Registry is the template registry instance
 var Registry = make([]Template, 0)
 
+const (
+	UsageTypeGrid    string = "grid"
+	UsageTypePV      string = "pv"
+	UsageTypeBattery string = "battery"
+)
+
+var ValidUsageTypes = []string{UsageTypeGrid, UsageTypePV, UsageTypeBattery}
+var UsageTypeDescriptions = map[string]string{
+	UsageTypeGrid:    "Grid Meter",
+	UsageTypePV:      "PV Meter",
+	UsageTypeBattery: "Battery Meter",
+}
 
 const (
 	ParamsChoiceTypeRS485 string = "rs485"
@@ -26,6 +38,7 @@ type Template struct {
 	Class       string
 	Type        string
 	Name        string
+	Usage       []string
 	Params      []TemplateParam
 	Sample      string
 	PlainSample string

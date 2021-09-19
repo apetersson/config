@@ -1,5 +1,7 @@
 type: modbus
-name: SunSpec compliant PV inverter (PV Meter)
+name: SunSpec compliant PV inverter
+usage:
+- pv
 sample: |
   model: sunspec
   uri: 192.0.2.2:502

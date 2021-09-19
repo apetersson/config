@@ -9,6 +9,9 @@ func init() {
 		Class:  "meter",
 		Type:   "modbus",
 		Name:   "SunSpec compliant PV inverter (PV Meter)",
+		Usage: []string{
+			"pv",
+		},
 		Sample: `model: sunspec
 uri: 192.0.2.2:502
 id: 1`,
