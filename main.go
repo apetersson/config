@@ -158,7 +158,7 @@ func renderSample(sample registry.Template) registry.Template {
 		panic(err)
 	}
 
-	var modbusChoices []string
+	var modbusChoices []registry.ParamsChoiceType
 	paramItems := make(map[string]interface{})
 
 	for _, item := range sample.Params {
@@ -175,6 +175,11 @@ func renderSample(sample registry.Template) registry.Template {
 		}
 
 		if len(item.Choice) > 0 {
+			for _, choice := range item.Choice {
+				if !contains(registry.ValidParamsChoiceTypes, choice) {
+					panic("param choice " + choice + " is invalid")
+				}
+			}
 			modbusChoices = item.Choice
 		}
 
@@ -224,7 +229,7 @@ func renderSample(sample registry.Template) registry.Template {
 	return sample
 }
 
-func contains(slice []string, element string) bool {
+func contains(slice []registry.ParamsChoiceType, element registry.ParamsChoiceType) bool {
 	for _, value := range slice {
 		if value == element {
 			return true
