@@ -2,7 +2,14 @@ type: modbus
 name: SunSpec compliant PV inverter
 usage:
 - pv
+params:
+- name: host
+  value: 192.0.2.2
+  hint: IP address or hostname
+- name: port
+  value: 502
+  hint: port address
 sample: |
   model: sunspec
-  uri: 192.0.2.2:502
+  uri: {{ .host.value }}:{{ .port.value }} # {{ .host.hint }} and {{ .port.hint }}
   id: 1

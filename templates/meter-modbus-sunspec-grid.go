@@ -12,8 +12,20 @@ func init() {
 		Usage: []string{
 			"grid",
 		},
+		Params: []registry.TemplateParam{
+			{
+				Name: "host",
+				Value: "192.0.2.2",
+				Hint: "IP address or hostname",
+			},
+			{
+				Name: "port",
+				Value: "502",
+				Hint: "port address",
+			},
+		},
 		Sample: `model: sunspec
-uri: 192.0.2.2:502
+uri: {{ .host.value }}:{{ .port.value }} # {{ .host.hint }} and {{ .port.hint }}
 id: 1
 power: 203:W # sunspec model 203 meter`,
 	}

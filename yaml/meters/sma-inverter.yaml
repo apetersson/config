@@ -3,6 +3,10 @@ name: SMA Speedwire Inverter
 usage:
 - pv
 - battery
+params:
+- name: host
+  value: 192.0.2.2
+  hint: IP address or hostname
 sample: |
-  uri: 192.0.2.2
+  uri: {{ .host.value }} # {{ .host.hint }}
   password: # optional

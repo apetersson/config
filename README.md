@@ -684,7 +684,7 @@ If you want to contribute configurations to this repository please open a Pull R
 
 ```yaml
 - type: sma
-  uri: 192.0.2.2
+  uri: 192.0.2.2 # IP address or hostname
   password: # optional
 ```
 
@@ -868,7 +868,7 @@ If you want to contribute configurations to this repository please open a Pull R
 ```yaml
 - type: modbus
   model: sunspec
-  uri: 192.0.2.2:502
+  uri: 192.0.2.2:502 # IP address or hostname and port address
   id: 1
   power: 203:W # sunspec model 203 meter
 ```
@@ -890,7 +890,7 @@ If you want to contribute configurations to this repository please open a Pull R
 ```yaml
 - type: modbus
   model: sunspec
-  uri: 192.0.2.2:502
+  uri: 192.0.2.2:502 # IP address or hostname and port address
   id: 1
 ```
 

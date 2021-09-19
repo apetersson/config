@@ -13,7 +13,14 @@ func init() {
 			"pv",
 			"battery",
 		},
-		Sample: `uri: 192.0.2.2
+		Params: []registry.TemplateParam{
+			{
+				Name: "host",
+				Value: "192.0.2.2",
+				Hint: "IP address or hostname",
+			},
+		},
+		Sample: `uri: {{ .host.value }} # {{ .host.hint }}
 password: # optional`,
 	}
 
