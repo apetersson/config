@@ -18,22 +18,21 @@ func init() {
 			{
 				Name: "Password",
 				Value: "password",
-				Hint: "Password of the Porsche ID",
+				Hint: "Password",
 			},
 			{
 				Name: "title",
 				Value: "Taycan",
-				Hint: "Display name of the vehicle in the UI",
+				Hint: "display name for UI",
 			},
 			{
 				Name: "capacity",
 				Value: "83",
-				Hint: "The available battery capacity in kWh",
+				Hint: "Battery capacity (kWh)",
 			},
 			{
 				Name: "vin",
 				Value: "WP...",
-				Hint: "The VIN number of your vehicle",
 			},
 		},
 		Sample: `title: {{ .title.value }} # {{ .title.hint }}
