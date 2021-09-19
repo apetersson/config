@@ -201,11 +201,11 @@ func renderSample(sample registry.Template) registry.Template {
 		}
 		choices["id"] = modbusID
 
-		// search for "# modbus-setup" and replace it with the correct indentation
-		r := regexp.MustCompile(`.*# modbus-setup.*`)
+		// search for "# ::modbus-setup::" and replace it with the correct indentation
+		r := regexp.MustCompile(`.*# ::modbus-setup::.*`)
 		matches := r.FindAllString(sample.Sample, -1)
 		for _, match := range matches {
-			indentation := strings.Repeat(" ", strings.Index(match, "# modbus-setup"))
+			indentation := strings.Repeat(" ", strings.Index(match, "# ::modbus-setup::"))
 
 			result := renderModbus(modbusTemplate, len(indentation), choices)
 

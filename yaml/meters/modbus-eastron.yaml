@@ -9,4 +9,4 @@ params:
 sample: |
   model: sdm # specific non-sunspec meter
   energy: Sum # only required for charge meter usage
-  # modbus-setup
+  # ::modbus-setup::

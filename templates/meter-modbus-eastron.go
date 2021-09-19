@@ -21,7 +21,7 @@ func init() {
 		},
 		Sample: `model: sdm # specific non-sunspec meter
 energy: Sum # only required for charge meter usage
-# modbus-setup`,
+# ::modbus-setup::`,
 	}
 
 	registry.Add(template)

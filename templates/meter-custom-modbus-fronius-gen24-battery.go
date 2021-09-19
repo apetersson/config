@@ -23,17 +23,17 @@ func init() {
   add:
   - source: modbus
     model: sunspec
-    # modbus-setup
+    # ::modbus-setup::
     value: 160:3:DCW # mppt 3 charge
     scale: -1
   - source: modbus
     model: sunspec
-    # modbus-setup
+    # ::modbus-setup::
     value: 160:4:DCW # mppt 4 discharge
 soc:
   source: modbus
   model: sunspec
-  # modbus-setup
+  # ::modbus-setup::
   value: ChargeState`,
 	}
 
