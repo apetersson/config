@@ -16,7 +16,7 @@ func init() {
 				Hint: "Porsche ID (Email-Address)",
 			},
 			{
-				Name: "Password",
+				Name: "password",
 				Value: "password",
 				Hint: "Password",
 			},
@@ -39,7 +39,7 @@ func init() {
 capacity: {{ .capacity.value }} # {{ .capacity.hint }}
 user: {{ .user.value }} # {{ .user.hint }}
 password: {{ .password.value }} # {{ .password.hint }}
-vin: {{ .vin.value }} # {{ .vin.hint }}`,
+vin: {{ .vin.value }}`,
 	}
 
 	registry.Add(template)

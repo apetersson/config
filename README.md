@@ -1436,8 +1436,8 @@ If you want to contribute configurations to this repository please open a Pull R
   title: Taycan # display name for UI
   capacity: 83 # Battery capacity (kWh)
   user: your@email.com # Porsche ID (Email-Address)
-  password: <no value> # <no value>
-  vin: WP... # <no value>
+  password: password # Password
+  vin: WP...
 ```
 
 <a id="vehicle-renault-zoe"></a>

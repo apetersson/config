@@ -4,7 +4,7 @@ params:
 - name: user
   value: your@email.com 
   hint: Porsche ID (Email-Address)
-- name: Password
+- name: password
   value: password 
   hint: Password
 - name: title
@@ -20,4 +20,4 @@ sample: |
   capacity: {{ .capacity.value }} # {{ .capacity.hint }}
   user: {{ .user.value }} # {{ .user.hint }}
   password: {{ .password.value }} # {{ .password.hint }}
-  vin: {{ .vin.value }} # {{ .vin.hint }}
+  vin: {{ .vin.value }}
