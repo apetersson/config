@@ -107,7 +107,7 @@ func init() {
 				},
 {{- else }}
 				Value: "{{.Value}}",
-{{- if eq .Optional true }}
+{{- if .Optional }}
 				Optional: {{.Optional}},
 {{- end }}
 			{{- if .Hint }}
@@ -197,7 +197,7 @@ func renderSample(sample registry.Template) registry.Template {
 		if item.Name == "" {
 			panic("params name is required")
 		}
-		if item.Value == "" && item.Optional == false && item.Type == "" {
+		if item.Value == "" && !item.Optional && item.Type == "" {
 			panic("params value or type is required")
 		}
 		if item.Type != "" && len(item.Choice) == 0 {
