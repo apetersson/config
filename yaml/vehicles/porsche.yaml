@@ -15,9 +15,10 @@ params:
   hint: Battery capacity (kWh)
 - name: vin
   value: WP...
+  optional: true
 sample: |
   title: {{ .title.value }} # {{ .title.hint }}
   capacity: {{ .capacity.value }} # {{ .capacity.hint }}
   user: {{ .user.value }} # {{ .user.hint }}
   password: {{ .password.value }} # {{ .password.hint }}
-  vin: {{ .vin.value }}
+  vin: {{ .vin.value }} # optional

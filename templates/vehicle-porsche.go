@@ -33,13 +33,14 @@ func init() {
 			{
 				Name: "vin",
 				Value: "WP...",
+				Optional: true,
 			},
 		},
 		Sample: `title: {{ .title.value }} # {{ .title.hint }}
 capacity: {{ .capacity.value }} # {{ .capacity.hint }}
 user: {{ .user.value }} # {{ .user.hint }}
 password: {{ .password.value }} # {{ .password.hint }}
-vin: {{ .vin.value }}`,
+vin: {{ .vin.value }} # optional`,
 	}
 
 	registry.Add(template)

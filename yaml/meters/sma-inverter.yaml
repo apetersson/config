@@ -7,6 +7,9 @@ params:
 - name: host
   value: 192.0.2.2
   hint: IP address or hostname
+- name: password
+  value: ""
+  optional: true
 sample: |
   uri: {{ .host.value }} # {{ .host.hint }}
-  password: # optional
+  password: {{ .password.value }} # optional

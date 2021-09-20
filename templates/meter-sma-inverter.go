@@ -19,9 +19,14 @@ func init() {
 				Value: "192.0.2.2",
 				Hint: "IP address or hostname",
 			},
+			{
+				Name: "password",
+				Value: "",
+				Optional: true,
+			},
 		},
 		Sample: `uri: {{ .host.value }} # {{ .host.hint }}
-password: # optional`,
+password: {{ .password.value }} # optional`,
 	}
 
 	registry.Add(template)

@@ -685,7 +685,7 @@ If you want to contribute configurations to this repository please open a Pull R
 ```yaml
 - type: sma
   uri: 192.0.2.2 # IP address or hostname
-  password: # optional
+  password:  # optional
 ```
 
 <a id="meter-sma-sunny-home-manager-2-0--energy-meter-grid-pv-or-battery-meter"></a>
@@ -1437,7 +1437,7 @@ If you want to contribute configurations to this repository please open a Pull R
   capacity: 83 # Battery capacity (kWh)
   user: your@email.com # Porsche ID (Email-Address)
   password: password # Password
-  vin: WP...
+  vin: WP... # optional
 ```
 
 <a id="vehicle-renault-zoe"></a>

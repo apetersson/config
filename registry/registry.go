@@ -26,11 +26,12 @@ const (
 var ValidParamsChoiceTypes = []string{ParamsChoiceTypeRS485, ParamsChoiceTypeTCPIP}
 
 type TemplateParam struct {
-	Name   string
-	Value  string
-	Hint   string
-	Type   string
-	Choice []string
+	Name     string
+	Value    string
+	Hint     string
+	Type     string
+	Choice   []string
+	Optional bool
 }
 
 // Template contains the template definition
