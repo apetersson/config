@@ -8,8 +8,10 @@ params:
   value: 192.0.2.2
   hint: IP address or hostname
 - name: password
-  value: ""
+  value: " "
   optional: true
 sample: |
   uri: {{ .host.value }} # {{ .host.hint }}
+  {{- if gt (len .password.value) 0 }}
   password: {{ .password.value }} # optional
+  {{- end }}

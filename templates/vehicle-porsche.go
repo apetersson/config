@@ -40,7 +40,9 @@ func init() {
 capacity: {{ .capacity.value }} # {{ .capacity.hint }}
 user: {{ .user.value }} # {{ .user.hint }}
 password: {{ .password.value }} # {{ .password.hint }}
-vin: {{ .vin.value }} # optional`,
+{{- if gt (len .vin.value) 0 }}
+vin: {{ .vin.value }} # optional
+{{- end }}`,
 	}
 
 	registry.Add(template)

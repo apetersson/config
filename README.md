@@ -685,7 +685,7 @@ If you want to contribute configurations to this repository please open a Pull R
 ```yaml
 - type: sma
   uri: 192.0.2.2 # IP address or hostname
-  password:  # optional
+  password:   # optional
 ```
 
 <a id="meter-sma-sunny-home-manager-2-0--energy-meter-grid-pv-or-battery-meter"></a>

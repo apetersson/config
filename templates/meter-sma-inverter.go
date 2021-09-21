@@ -21,12 +21,14 @@ func init() {
 			},
 			{
 				Name: "password",
-				Value: "",
+				Value: " ",
 				Optional: true,
 			},
 		},
 		Sample: `uri: {{ .host.value }} # {{ .host.hint }}
-password: {{ .password.value }} # optional`,
+{{- if gt (len .password.value) 0 }}
+password: {{ .password.value }} # optional
+{{- end }}`,
 	}
 
 	registry.Add(template)
