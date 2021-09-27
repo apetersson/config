@@ -1571,6 +1571,19 @@ If you want to contribute configurations to this repository please open a Pull R
   vin: WTSLA...
 ```
 
+Tesla with tokens manually added:
+
+```yaml
+  - type: tesla
+    title: Tesla Model 3 SR+ # display name for UI
+    capacity: 58 # kWh
+    tokens:
+      access: xxx-generated-access-token-short
+      refresh: XXXX-GENERATED-REFRESH-TOKEN-VERY-LONG-XXXX
+    vin: 5YJ.....
+    cache: 5m
+```
+
 <a id="vehicle-vw-e-up-e-golf-etc"></a>
 #### VW (e-Up, e-Golf, etc)
 
